@@ -1,0 +1,30 @@
+1.
+D0 = D3 = 0
+D1 = D2 = 1
+
+2. 
+a. 11
+b. 0
+c. 9
+
+3. 
+
+4. 
+module q4(a,b,x);
+    input a, b;
+    output x;
+    assign x = ~(~(~(a | ~b) | (a & b)) & (a | b))
+endmodule
+
+5. 
+module majority (a, y);
+    input a;
+    output y;
+    assign y = (a[0] & a[1] | a[0] & a[2] |  a[1] & a[2]);
+endmodule
+
+6.
+return x & 1
+
+7.
+return x | 4
