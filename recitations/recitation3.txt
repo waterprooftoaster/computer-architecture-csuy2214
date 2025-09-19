@@ -1,0 +1,44 @@
+1. 
+A  B
+0  10
+1  11 
+0  11
+9  3
+8  3
+15 5
+0  5
+
+2. 
+a. rg3 copied to rg1, program counter + 1, 0 flag unchanged
+b. rg2 = rg2 + 5, if sum = 0 then 0 flag = 1, otherwise reset, program counter + 1
+c. if rg3 - rg1 = 0 then 0 flag = 1, program counter + 1
+d. program counter + 3, zero flag unchanged.
+
+3. 
+a. rg0 = 2
+b. rg1 = 4
+c. rg0 = 2, rg1 = 6
+d. rg1 = 5
+
+4. 
+a. 1010 0010 1100
+b. 1101 0001 0110
+c. 1111 0011 1101
+d. 0011 0000 0010
+
+5.
+a. {add, rg0, rg1, 0000}
+b. {jmp, rxx, rxx, 0110}
+c. {sub, rg2, rg3, 0000}
+d. {movi,rxx, rg2, 1011}
+
+6. 
+a. rg0 = 4, rg1 = 8
+b. rg0 = 5, rg1 = 0
+
+7. 
+0 = {movi, rxx, rg3, 1111}
+1 = {subi, rxx, rg3, 0001}
+2 = {jnz, rxx, rg3 1111}
+3 = {jmp, rxx rxx, 0000}
+
