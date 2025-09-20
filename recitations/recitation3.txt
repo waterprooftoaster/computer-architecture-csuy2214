@@ -30,7 +30,7 @@ d. 0011 0000 0010
 a. {add, rg0, rg1, 0000}
 b. {jmp, rxx, rxx, 0110}
 c. {sub, rg2, rg3, 0000}
-d. {movi,rxx, rg2, 1011}
+d. {movi,rxx, rg2, 1011}`
 
 6. 
 a. rg0 = 4, rg1 = 8

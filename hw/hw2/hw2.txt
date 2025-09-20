@@ -1,0 +1,29 @@
+5.
+return x ^ (1 << 1);
+
+6. 
+return x & ~(1 << 4);
+
+7.
+return ((x & 7) << 6) | ((x & 7) << 3) | (x & 7);
+
+8.
+return ((x & 0b1001000) == 0b1000000);
+
+9.
+The & and && operators are fundamentally different.
+The & operator is bitwise, while && is a logical AND operator.
+
+A logical AND (&&) takes two boolean values and returns true only if both are true. A bitwise AND (&), on the other hand, works at the binary level: it compares each bit of its operands and returns a new value where each bit is set to 1 only if the corresponding bits of both operands are 1.
+
+Although booleans and bits are related, they are not interchangeable. Using & when you mean to use && can lead to incorrect results, because & is not checking “true” and “false” in the logical sense—it is directly comparing the underlying bits of the values.
+
+Examples:
+
+cout << (3 & 3) << endl;  
+// Output: 3
+
+
+Example with logical AND:
+cout << (3 && 3) << endl;
+// Output: 1
