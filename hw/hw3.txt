@@ -1,0 +1,31 @@
+1.
+    100,011,110,111,101,001
+
+2.
+    a. 12'b1110 10 11 0000; Set ZF to 1 if value of Rg2 and value of Rg3 are equal, otherwise it is 0 and PC is incremented by 1
+    b. 12'b1011 00 11 0000; Add and store the value of Rg0 to Rg3, PC is incremented by 1.
+    c. 12'b0010 00 00 0001; If PC is 1, jump to instruction at address of the sum of immediate value of 1 and PC. 
+
+3.
+    a. {addi,RXX,Rg1,4'b0011}; Adds and stores immediate value 3 to register 1, increments PC by 1.
+    
+    b. {add, Rg1,Rg1,4'b0011}; Adds and stores value of Rg1 to Rg1, increments PC by 1.
+    
+    c. {jmp,  RXX, RXX, 4'b0000}; Jumps to instruction at address 0 + PC, serves as placeholder for rest of the code past the infinite loop. 
+
+    d. {jmp,  RXX, RXX, 4'b0001}; Jumps to instruction at address 1 + PC.
+
+4.
+    a.3
+    b.5
+    c.6
+
+5. 
+    a. 225, cell 8 is a nested loop of another loop that stops only when Rg0 is 0, and this nested loop stops only when Rg1 is zero. Both Rg0 and Rg1 are initially 15. So 15 * 15 = 225 iterations where cell 8 is ran. 
+    b. 15, cell 10 is part of a loop that runs while the value of Rg0 is not equal to zero. Cell 10 subtracts from Rg0 15 times until the value fulfills the boolean and stops the loop.
+    c. 0, there are no jumps that allow the program counter to reach ROM cell 12.
+    d. Infinitely to stop the program, after Rg0 has been subtracted to zero. 
+    e. The code is an integrated loop that sets two variables to 15. The second variable is getting subtracted by 1 every iteration of that loop stopping when the second variable equals 0. Wrapping that loop is the first variable that subtracts 1 from its variable after the integrated loop is done. When both variable equal zero, then the program stops. 
+
+
+
