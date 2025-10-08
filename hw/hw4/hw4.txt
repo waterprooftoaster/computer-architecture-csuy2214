@@ -1,0 +1,101 @@
+1.
+    In this e15 code snippet, we see a comparison between the values of Rg0 and Rg0.
+    Since the cmp instruction is comparing the same register, the zero flag will be
+    set to 1. The next instruction is a jnz instruction, which only jumps if the
+    zero flag is not set. Since the zero flag is set, the jnz instruction will not
+    be executed, and the program counter will increment by 1. Since the program
+    counter at this point is 15, the next instruction will be at program counter
+    0 since the program counter is a 4'bit value, it cannot represent numbers
+    greater than 15. Therefore, the program will loop back to the beginning of
+    the program and continue to execute the same instructions over and over again,
+    until it finds an infinite loop that will be most likely executing now that
+    the zero flag is set.
+
+2.
+	My code sets the values to registers, then checks if they are equal.
+	If they're equal I set the return register to 1 to represent TRUE, 
+	and end the code. If they are not equal I put them into a loop that checks 
+	if either is zero, and if not they I decrement decrements both by 1. Once one 
+	of them is zero, then depending on which register it is, the return register is true.
+	This is because the register that reaches zero first signifies that it is less than 
+	the other register.
+3.
+    a.
+        The PC must be 10 bit unsigned int so it can reach the value 1024,if PC was not changed
+        at stuck at being a 4 bit unsigned int, then it would be impossible to reach
+        the instructions that have values that are greater than 16.
+
+    b.
+        For operations like the jump, there would be a need to add values to PC to be able to traverse
+        the program. If we leave the bit width of our instructions at 12, it would be extremely tedious
+        to keep adding the immediate value with a maximum of 15 to the PC to get to numbers that could
+        be in the hundreds or worst case a thousand. Therefore we must also make the immediate value
+        a 10 bit unsigned int to better support traversing the program, while keeping the left MSB consistent.
+        Hence the total bit with of instructions must be 18 bits.
+
+    c.
+        The bits should also be able to hold 10 bit unsigned ints, since the imm value will be 10 bit we
+        need to be able to store the value of the 10 bit.
+
+    d.
+        The dimensions of myROM will have to be 1024 vertically to ensure we get the desired amounts of
+        instructions, and horizontally 18 bits for each instruction.
+
+    e.
+        The input must also be able to have 10 bit register inputs since part C. The opcode shouldn't
+        need to be any longer than 10 bits so we could ignore the first 5 MSB and focus on only the
+        4 LSB to handle the ALU OPCODE. The output must be 10 bits as well so it can be stored in the
+        registers that are 10 bit.
+
+4.
+    myROM[0] = {movi, RXX, Rg0, 4'b0111}; //store value 7 into Rg0
+    myROM[1] = {movi, RXX, Rg1, 4'b0010}; //store value 2 into Rg1
+    myROM[2] = {movi, RXX, Rg2, 4'b0000}; //store value 0 into Rg2
+    myROM[3] = {cmpi, RXX, Rg0, 4'b0000}; //check if Rg0 is 0
+    myROM[4] = {jz,  RXX, RXX, 4'b1000};  //jump to set Rg2 to 0
+    myROM[5] = {cmpi, RXX, Rg1, 4'b0000}; //check if Rg1 is 0
+    myROM[6] = {jz,  RXX, RXX, 4'b0110};  //jump to set Rg2 to 0
+    myROM[7] = {cmpi, RXX, Rg0, 4'b0000}; //CHECK if Rg0 == 0
+    myROM[8] = {jz, RXX, RXX, 4'b0101};   //JUMP if TRUE to 12 to end
+    myROM[9] = {subi, RXX, Rg0, 4'b0001}; //SUBTRACT 1 from Rg0
+    myROM[10] = {add, Rg1, Rg2, 4'b0001}; //ADD value of Rg1 to Rg2, and store sum into Rg2
+    myROM[11] = {jmp, RXX, RXX, 4'b1100}; //JUMP to
+    myROM[12] = {movi, RXX, Rg2, 4'b0000};//SET Rg2 to 0
+    myROM[13] = {jmp, RXX, RXX, 4'b0000}; //HALT
+    myROM[14] = {jmp, RXX, RXX, 4'b0000}; //HALT
+    myROM[15] = {jmp, RXX, RXX, 4'b0000}; //HALT
+
+
+5.
+    a. 4
+
+    b. 0
+
+    c. 5
+
+    d. 7
+
+    e. 2
+
+    f. 0000010
+
+
+
+
+6.
+    a. j , target == 0100000000000011
+
+    b. jeq, $4, $0,target == 110 100 000 1111001
+
+    c. 
+        slti, $1, $4, 10 == 111 100 001 0001010
+        sw, $1, isless($0) == 101 000 001 0000011
+
+    d. 
+        lw, $5, 29($0) == 100 000 101 0011101
+        sw, $5, 30($0) == 101 000 101 0011110
+
+7.
+    addi $1, $1, 1 == 001 001 001 0000001
+    add, $2, $2, $2 == 000 010 010 010 0000
+    halt == 010 0000000000011
