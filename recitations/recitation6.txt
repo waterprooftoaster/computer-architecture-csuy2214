@@ -1,0 +1,68 @@
+1. 
+    Like an “if” statement: Both choose between alternatives based on a control signal.
+    Unlike an “if” statement: The MUX performs a simultaneous hardware selection, while an “if” statement performs sequential execution in software.
+
+2. PC is a 16 bit value and 7 bit cannot add to it. Only jeq uses this component.
+
+3. SUBTRACT (A − B) during jeq.
+
+4. 
+    a. addi
+
+        FUNCalu: 0 (perform addition for R[regSrc] + imm)
+
+        MUXalu: 1 (second ALU input is the sign-extended immediate)
+
+        MUXpc: 1 (non-jumping; PC <- PC+1)
+
+        MUXrf: 0 (source register selector comes from the 2-reg format’s regSrc field at bits 12–10)
+
+        MUXtgt: 0 (write back the ALU result)
+
+        MUXdst: 0 (destination register is regDst at bits 9–7 in the 2-reg format)
+
+        WErf: 1 (we write the result to the register file)
+
+        WEdmem: 0 (no store to memory)
+    
+    b. jr
+
+        FUNCalu: 0
+
+        MUXalu: 0
+
+        MUXpc: 0 
+
+        MUXrf: 0 
+
+        MUXtgt: don’t care 
+
+        MUXdst: don’t care 
+
+        WErf: 0 
+
+        WEdmem: 0 
+
+    c. lw
+
+        FUNCalu: 0
+
+        MUXalu: 1
+
+        MUXpc: 1
+
+        MUXrf: 0
+
+        MUXtgt: 2
+
+        MUXdst: 0
+
+        WErf: 1
+
+        WEdmem: 0
+
+5. jal
+
+
+6. jemm
+
