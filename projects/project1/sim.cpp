@@ -264,7 +264,7 @@ void sim(uint16_t &pc, uint16_t regs[], uint16_t mem[])
     }
 
     // Check for halt
-    halt = (pc & 8191) == new_pc;
+    halt = (pc == new_pc);
 
     // Update PC, if halt is false
     if (!halt)
