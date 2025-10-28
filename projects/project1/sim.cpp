@@ -20,6 +20,11 @@ using namespace std;
 size_t const static NUM_REGS = 8;
 size_t const static MEM_SIZE = 1 << 13;
 
+// Function headers
+void load_machine_code(ifstream &f, uint16_t mem[]);
+void print_state(uint16_t pc, uint16_t regs[], const uint16_t memory[], const size_t memquantity);
+void sim(uint16_t &pc, uint16_t regs[], uint16_t mem[]);
+
 /**
     Main function
     Takes command-line args as documented below
