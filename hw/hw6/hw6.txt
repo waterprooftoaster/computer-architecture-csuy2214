@@ -1,0 +1,25 @@
+1. 
+  Symbolically, swi = Mem[R[regAddr]] <- imm. Thus, imm needs to be passed into
+  Memory's dataIn, and R[regAddr] into dataAddr. This is not currently possible.
+
+  To enable this opcode, dataIn must see imm. This should be implemented with a 
+  new MUX, let's name it MUXrf0, before Reg File's SRC1 input that selects imm 
+  instead of rB when 1, so dataIn can see imm with the existing line SRC1dataOut.
+
+  Also, dataAddr must see R[regAddr]'s value, meaning the Register File must see
+  rA. This is convinient since rA can only be read by SRC2 and does not conflict
+  with imm at SRC1. However, MUXalu now must be a 3-way mux and select the input
+  of int 0 when 2 to avoid modifying the value of rA at the ALU. rA is then read
+  by dataAddr using the exisitng ALU output line. 
+
+  When running the swi opcode, the new MUXrf0 needs to be 1, MUXalu must be 2,
+  FUNCalu needs to be 0 or 1 to avoid modifying R[regAddr].
+
+2.
+  CPUa = 4N/5
+  CPUb = 2N/3
+  (4N/5)/(2N/3) = (4N*3)/(5*2N) = 12N/10N = 6/5 = 1.2
+  PC A is 1.2 times the CPU speed of PC B, thus 20% faster.
+
+
+  
