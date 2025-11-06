@@ -21,5 +21,16 @@
   (4N/5)/(2N/3) = (4N*3)/(5*2N) = 12N/10N = 6/5 = 1.2
   PC A is 1.2 times the CPU speed of PC B, thus 20% faster.
 
+3.
+  In the write back stage, you need to add an extra stage that is similar to load 
+  word, but instead of adding 1 to the program counter, you have to set the pc to 
+  dmem. I believe that would mean that MUXpc has to take an extra wire that 
+  connects to the MDR.
 
+  IF - 0
+  ID - 1
+  EXEC - 3
+  MEM - 5
+  WB - 8 but the MUXpc should be changed so that there is an additional wire that 
+  connects to MDR.
   
