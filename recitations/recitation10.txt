@@ -1,0 +1,25 @@
+1.
+  a. 16 bytes
+  b. 2^6 * 4 * 2^4 = 1024
+
+2.
+  refer to pic
+
+3. 
+  refer to pic
+
+4. 
+  refer to pic 
+
+5.
+  a. 
+    2MB = 2097152 bytes
+    => 2MB/512 = 4096 bytes
+  b. 
+    9 bits, 2^9 = 512
+  
+  c. 
+    12 bits,  2^12 = 4096
+
+  d. 
+    11 bits, 32 - 12 - 9 = 11
