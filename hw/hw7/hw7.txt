@@ -1,0 +1,105 @@
+2.)
+    This E20 code is missing a halt to end the program. Since there is no
+    end to this program, we cannot get a "final" value for register 3.
+
+3.)
+    1 MHz / 4 CPI = 250,000 instructions per second
+    A.)
+        15 instructions
+    B.)
+        Total Clock Cycles = Number of Instructions×Average CPI ?
+        64 clock cycles
+    C.)
+        0.064 miliseconds
+
+4.)
+    A.)
+        instruction C reads $1 after instruction A writes to $1
+        instruction E reads $3 after instruction D writes to $3
+    B.)
+        ╔══════╦════╦═════╦═════╦═════╦═════╗
+        ║ Time ║ IF ║ ID  ║ EX  ║ MEM ║ WB  ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║   1  ║ a  ║     ║     ║     ║     ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║   2  ║  b ║  a  ║     ║     ║     ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║   3  ║  c ║  b  ║  a  ║     ║     ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║   4  ║  c ║ nop ║  b  ║  a  ║     ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║   5  ║  c ║ nop ║ nop ║  b  ║  a  ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║   6  ║  d ║  c  ║ nop ║ nop ║  b  ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║   7  ║  e ║  d  ║  c  ║ nop ║ nop ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║   8  ║  e ║ nop ║  d  ║  c  ║ nop ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║   9  ║  e ║ nop ║ nop ║  d  ║  c  ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║  10  ║  e ║ nop ║ nop ║ nop ║  d  ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║  11  ║    ║  e  ║ nop ║ nop ║ nop ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║  12  ║    ║     ║  e  ║ nop ║ nop ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║  13  ║    ║     ║     ║  e  ║ nop ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║  14  ║    ║     ║     ║     ║  e  ║
+        ╚══════╩════╩═════╩═════╩═════╩═════╝
+    C.)
+        D:lw $3, grade2($0)   #WRITE 99 -> $3
+        A:movi $1, 0          #WRITE 0 -> $1
+        B:lw $2, grade1($0)   #WRITE 72 -> $2
+
+        E:add $1, $0, $3      #READ $0 and $3 THEN WRITE to $1
+        C:add $1, $1, $2      #READ $1 and $2 THEN WRITE to $1
+
+    D.)
+        ╔══════╦════╦═════╦═════╦═════╦═════╗
+        ║ Time ║ IF ║ ID  ║ EX  ║ MEM ║ WB  ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║   1  ║ D  ║     ║     ║     ║     ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║   2  ║  A ║  D  ║     ║     ║     ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║   3  ║  B ║  A  ║  D  ║     ║     ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║   4  ║  E ║  B  ║  A  ║  D  ║     ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║   5  ║  E ║ nop ║  B  ║  A  ║  D  ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║   6  ║  C ║  E  ║ nop ║  B  ║  A  ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║   7  ║  C ║ nop ║  E  ║ nop ║  B  ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║   8  ║    ║  C  ║ nop ║  E  ║ nop ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║   9  ║    ║     ║  C  ║ nop ║  E  ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║  10  ║    ║     ║     ║  C  ║ nop ║
+        ╠══════╬════╬═════╬═════╬═════╬═════╣
+        ║  11  ║    ║     ║     ║     ║  C  ║
+        ╚══════╩════╩═════╩═════╩═════╩═════╝
+5.)
+    A.) 2.5 GHz
+
+    B.) 2.5 GHz
+
+
+6.)
+    A.)
+        Misprediction: 7 * 3 = 21 clock cycles
+        The jeq @ address 3, is wrongly predicting the branch is taken for the whole array until
+        value $2 is 0, which amounts to 5 times that it is wrongly taken.
+        and jeq @ address 5, wrongly predicts the jump to next label twice when swapping the greatest
+        value twice from 0 to 53 and 53 to 94.
+
+
+    B.) Misprediction: 3*3 clock cycle = 9 clock cycles
+        1 time for recognizing the end of the array, and jumping to done, 4 times for jumping to next
+        when the curr_max is less than the curr_num in array.
+
+    C.) Misprediction: 2*3 = 6 clock cycles
+        There are only two instances where the previous resolution is not met.
