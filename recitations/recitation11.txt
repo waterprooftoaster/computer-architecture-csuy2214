@@ -1,0 +1,36 @@
+1. 
+  Both policies apply. 
+  In write-through, each write is sent ot the cash and main memory simultaneously.
+  In WRite-back, each write goes only to the cache. It is sent only to the main 
+  memory when that cache row is evicted.
+
+2. 
+  Both policies apply.
+  In write-around, the write is sent only to the main memory. 
+  In write-allocate, the write is sent ot he cache. 
+
+3.
+  A fully associative casche with a size of 1 cell will use zero bits for both index
+  and offset.
+  We need 0 bits to represent the offsetm since each address is in its own block.
+  If the cache is fully associative, there is only one row. So no need for indexing.
+
+4. 
+  a.
+    31/32 = 96.875%
+    The size of the cache does not impact the miss rate.
+  b.
+    0.03125
+
+5. 
+  lw $1, 20($0)
+  lw $1, 28($0)
+  lw $1, 36($0)
+  halt
+
+7.
+  lw $1 22($0)
+  halt
+
+
+
