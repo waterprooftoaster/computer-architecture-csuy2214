@@ -1,0 +1,34 @@
+1. A page table is the data structure the CPU and OS use to translate virtual addresses into physical addresses.
+
+2. Because virtual addresses are an abstraction, not a direct mapping to existing RAM. The OS and hardware let you pretend you have more memory than physically exists by using disk and page table.
+
+3. The TLB (Translation Lookaside Buffer) is a small, fast hardware cache that stores recent VPN → PPN translations. It sits between the CPU and the page-table hardware.
+
+4.
+  a. 22 bits
+  b. 35 bits
+  c. 2^18
+  d. 18 bits
+  e. 2^12
+  f. 13 bits
+  g. 2^18
+  h. 2^19
+
+5. 
+  VA   VPN   PPN   Offset   Result
+  41   5     10    1        PA = 81
+  26   3     5     2        PA = 42
+  15   1     7     7        PA = 63 (read-only)
+  59   7     6     3        PA = 51
+  3    0     2     3        PA = 19
+  48   6     8     0        PA = 64
+  34   4     NA    2        Page fault
+
+6.
+  VA   VPN   PPN   Hit/Miss   PPN    Physical Address
+  9    2     18    Hit        18     73
+  72   18    0     Miss       -      -
+  26   6     4     Hit        4      18
+  17   4           Miss       -      -
+  48   12    12    Hit        12     48
+  74   18          Miss       -      -
