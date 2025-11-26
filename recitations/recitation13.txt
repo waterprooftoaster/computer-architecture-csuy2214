@@ -11,8 +11,9 @@
   a. mov eax, 42
   b. add eax, 42
   c. add eax, ebx
-  d. 
+  d.
     add eax, 99
+    mov ebx, eax
 
   e.
     cmp eax, ebx
