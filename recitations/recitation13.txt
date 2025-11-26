@@ -1,0 +1,43 @@
+1.
+  a. 0x32
+  b. 0x20
+  c. 0
+  d. 48 = 0x30
+  e. eax = 0x12ab56
+  f. eax = 0x1200ab
+  g. eax << 2 = 128 = 0x80
+
+2. 
+  a. mov eax, 42
+  b. add eax, 42
+  c. add eax, ebx
+  d. 
+    add eax, 99
+
+  e.
+    cmp eax, ebx
+    je foo
+  f. mov eax, [1099]
+  g. mov ecx, [foo]
+  h. mov bx, [0]
+  i.
+    xor eax, eax
+    mov, ax, [bar]
+  
+    this is NOT correct:
+      mov bx, [bar]
+      mov eax, bx
+  j.
+    mov eax, [foo]
+    mov [bar], eax
+  
+3. 
+  a. 0x00000400
+  b. 0aaaaeaa0h
+  c. 0xaaff00
+  d. 0x0000ab00
+  e. 0x552a0000
+
+4.
+  eax is 0x1b5 (437)
+  ebx is 1
