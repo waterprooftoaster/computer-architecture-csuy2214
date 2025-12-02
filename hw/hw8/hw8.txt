@@ -1,0 +1,62 @@
+2.)
+    Avg memory access time = 4ns * .98 *4ns
+        15.68ns
+
+3.)
+    I believe that write through must be the correct cache technique, assuming that
+    the processors can not communicate to eachother, operating individually.
+    Say hypothetically that a computer is using write back caches and
+    if one processors directs for a change to a specific memory, block that contains
+    the address to that memory will hold that value until that block is evicted. The memory
+    itself is not updated until that block is evicted, which does not disqualify that memory
+    address from being accessed from other processors and outputting to other caches an old
+    value that was updated in a value that is temproarily holding it until an eviction of
+    that specific block (due to write back). Write through would not have this issue since
+    the writes are handled directly once instructed to do so, although the inefficinecy compared
+    to write back. However, this approach would make for a more accurate query for memory values,
+    since no new values are being temporarily held.
+
+4.)
+    a.)
+        tag values:
+            L1: 45 bits
+            L2: 42 bits
+    b.)
+        Total Cache Size with metadata:
+            L1: 4.045 mb
+            L2: 4.042 mb
+    c.)
+        CPI = 12.5
+
+5.)
+    a.)
+        ['Miss', 'Miss', 'Miss', 'hit', 'MissEv', 'hit', 'MissEv', 'Miss', 'MissEv']
+        Hit Ratio: 22%
+    b.)
+        [M, M, M, H, M, H, M, M, H]
+        HR: 33%
+
+    c.)
+        ['Miss', 'hit', 'Miss', 'hit', 'MissEv', 'hit', 'hit', 'hit', 'MissEv']
+        Hit Ratio: 55%
+    d.)
+        [M, H, M, H, M, H, H, M, M]
+        Hit ratio: 44%
+
+
+6.)
+    ╔══════╦════════╦════════╦════════╦════════╦════════╗
+    ║ Addr ║ L1 Tag ║ L1 h/m ║ L2 Row ║ L2 Tag ║ L2 h/m ║
+    ╠══════╬════════╬════════╬════════╬════════╬════════╣
+    ║ 53   ║ 13     ║ m      ║ 0      ║ 3      ║ m      ║
+    ╠══════╬════════╬════════╬════════╬════════╬════════╣
+    ║ 50   ║ 12     ║ m      ║ 0      ║ 3      ║ h      ║
+    ╠══════╬════════╬════════╬════════╬════════╬════════╣
+    ║ 52   ║ 13     ║ h      ║        ║        ║        ║
+    ╠══════╬════════╬════════╬════════╬════════╬════════╣
+    ║ 40   ║ 10     ║ m      ║ 1      ║ 2      ║ m      ║
+    ╠══════╬════════╬════════╬════════╬════════╬════════╣
+    ║ 60   ║ 15     ║ m      ║ 1      ║ 2      ║ m      ║
+    ╠══════╬════════╬════════╬════════╬════════╬════════╣
+    ║ 52   ║ 13     ║ m      ║ 0      ║ 2      ║ m      ║
+    ╚══════╩════════╩════════╩════════╩════════╩════════╝
