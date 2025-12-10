@@ -1,0 +1,59 @@
+1.)
+    56
+    34
+    11
+    cd
+    ab
+    cd
+    ab
+
+
+2.)
+    a.)
+        The program iterates through the array arr of 16-bit integers,
+        treating 0 as a sentinel to mark the end. It keeps track of the
+        previous value (starting from 0) and, for each element, computes
+        the absolute value of the difference between the current element
+        and the previous element, then accumulates that into [d].
+        For arr = [5, 50, 20, 30, 0], the final value stored in [d] is 120.
+
+        In general, if the array elements are a0, a1, ..., ak with ak = 0
+        as the sentinel, then:
+            [d] = |0 - a0| + Σ (from i = 1 to k) |ai - a(i-1)|
+
+    b.)
+        The array uses 0 as a sentinel value. On each iteration the code
+        loads the current element into edx and executes:
+            cmp edx, 0
+            jne loop
+        When edx == 0 (the sentinel), the comparison is equal and the
+        jump is not taken, so the loop terminates.
+
+    c.)
+        Each array element is 2 bytes. This is indicated by the dw
+        (define word) directive for arr, and by the code incrementing
+        the pointer ecx by 2 each iteration.
+
+    d.)
+        d is 4 bytes. This is indicated by the dd (define doubleword)
+        directive, which allocates a 32-bit value.
+
+    e.)
+        The array arr has 5 elements, each 2 bytes, so its total size
+        is 5 × 2 = 10 bytes.
+
+    f.)
+        The program computes absolute values using the sequence:
+            sub eax, edx     ; eax = previous - current
+            jns L1           ; if result is non-negative, skip negation
+            neg eax          ; if negative, negate to make it positive
+        After this, eax holds |previous - current|. That value is then
+        added into [d] with:
+            add [d], eax
+
+    g.)
+        xor edx, edx is necessary so that edx starts at 0 before the loop.
+        This ensures the first term contributes |0 - first_element| to [d],
+        and also prevents any garbage value in edx from corrupting the
+        computation or the sentinel comparison cmp edx, 0. Without
+        zeroing edx, the logic of the program would be incorrect.
