@@ -1,25 +1,78 @@
 1.
   a. 16 bytes
-  b. 2^6 * 4 * 2^4 = 1024
+  b. 2^6 * 2^4 = 62 * 16 = 1024 bytes
 
 2.
-  refer to pic
+  [12, 13, 6, 0, 2, 5, 14, 14, 1, 8]
+  = [ 
+    1100,
+    1101,
+    0110,
+    0000,
+    0010,
+    0101,
+    1110,
+    1110,
+    0001,
+    1000
+  ]
+
+  blocksize = 1 => 0 bit offset
+  8 rows => 3 bit index
+  1 bit tag
+  
+  row 4, tag 1, miss
+  row 5, tag 1, miss
+  row 6, tag 0, miss
+  row 0, tag 0, miss
+  row 2, tag 0, miss
+  row 5, tag 0, miss & eviction
+  row 6, tag 1, miss & eviction
+  row 6, tag 1, hit
+  row 1, tag 0, miss
+  row 0, tag 1, miss & eviction
 
 3. 
-  refer to pic
+  blocksize = 2 => 1 bit offset
+  4 rows => 2 bit index
+
+  row 3, tag 1, miss
+  row 3, tag 1, hit
+  row 4, tag 0, miss
+  row 1, tag 0, miss
+  row 2, tag 0, miss
+  row 3, tag 0, miss & eviction
+  row 4, tag 1, miss & eviction
+  row 4, tag 1, hit
+  row 1, tag 0, hit
+  row 1, tag 1, miss & eviction
 
 4. 
-  refer to pic 
+  blocksize = 4 => 2 bit offset
+  2 rows => 1 bit index
+
+  row 2, tag 1, miss
+  row 2, tag 1, hit
+  row 2, tag 0, miss & eviction
+  row 1, tag 0, miss
+  row 1, tag 0, hit
+  row 2, tag 0, hit
+  row 2, tag 1, miss & eviction
+  row 2, tag 1, hit
+  row 1, tag 0, hit
+  row 1, tag 1, miss & eviction
+
 
 5.
   a. 
-    2MB = 2097152 bytes
-    => 2MB/512 = 4096 bytes
+    2MB = 2*2^20
+    => 2MB / 512 = 4096 rows
+
   b. 
-    9 bits, 2^9 = 512
+    log2 512 = 9 bits
   
   c. 
-    12 bits,  2^12 = 4096
+    log 2 4096 = 12 bits
 
   d. 
-    11 bits, 32 - 12 - 9 = 11
+    32 - 12 - 9 = 11 bits

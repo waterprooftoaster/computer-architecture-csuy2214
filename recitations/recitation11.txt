@@ -1,36 +1,82 @@
 1. 
-  Both policies apply. 
   In write-through, each write is sent ot the cash and main memory simultaneously.
-  In WRite-back, each write goes only to the cache. It is sent only to the main 
+  In write-back, each write goes only to the cache. It is sent only to the main 
   memory when that cache row is evicted.
 
 2. 
-  Both policies apply.
   In write-around, the write is sent only to the main memory. 
   In write-allocate, the write is sent ot he cache. 
 
 3.
   A fully associative casche with a size of 1 cell will use zero bits for both index
   and offset.
-  We need 0 bits to represent the offsetm since each address is in its own block.
+  We need 0 bits to represent the offset since each address is in its own block.
   If the cache is fully associative, there is only one row. So no need for indexing.
 
 4. 
   a.
     31/32 = 96.875%
     The size of the cache does not impact the miss rate.
+
   b.
     0.03125
 
 5. 
-  lw $1, 20($0)
-  lw $1, 28($0)
-  lw $1, 36($0)
+  lw $1 0($0)
+  lw $2 8($0)
+  lw $3 16($0)
   halt
 
+6.
+  a. 
+    4 * 2 = 8 blocks
+    8 * 32 = 256 bits
+  
+  b. 
+    total size = data size + metadata
+    metadata = v and tag
+    tag = 10 bits per block, v is always 1 bit
+    thus metatdata per block is 11 bits. the table stores 8 blocks.
+    thus the total metatdata size is 8 * 11 = 88
+    => total size = 256 + 88 = 344 bits
+
 7.
-  lw $1 22($0)
+  L1 blocksize = 2 cells => 1 bit offset
+  L2 blocksize = 4 cells => 2 bit offset
+  L1 rowsize   = 8 rows  => 3 bit index
+  L2 rowsize   = 4 rows  => 2 bit index
+
+  0000000000000 loads into row 1 of both caches
+  0000000010000 loads into row 1 of both caches as well, but it will evict row 1 of L1.
+  Thus, when we load addr 0 again, it will miss on L1 but hit on L2.
+
+  lw $1 0($0)
+  lw $2 16($0)
+  lw $3 0($0)
   halt
+
+8.
+  32 bit pointer means that the memory addr is 32 bits
+
+  a. 2*2^20 / 512 = 4096 blocks
+
+  b. log 512 base 2 = 9 bits
+
+  c. 32 - 9 = 23 bits
+
+  d. 2 way associative cache means there are 2 blocks per row. There are 4096 blocks in the cache => 2048 rows
+
+  e. log 2048 base 2 = 11 bits
+
+  f. 32 - 7 - 11 = 12 bits
+
+  g. 4096 / 8 = 512 rows
+
+  h. log 512 base 2 = 9 bits
+
+  i. 32 - 7 - 9 = 14 bits
+
+
 
 
 
