@@ -31,8 +31,8 @@
 
   VA Hit/Miss PPN PA
   9  hit      18  73
-  72 miss            #VPN 18 is loaded
+  72 miss            # VPN 18 is loaded
   26 hit      4   18
-  17 miss            #VPN 4 is loaded
+  17 miss            # VPN 4 is loaded
   48 hit      12  48
-  74 hit             
+  74 hit             # Hit because VPN 18 was loaded. But we can't know the PPN
