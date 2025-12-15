@@ -2,43 +2,77 @@
   a. 0x32
   b. 0x20
   c. 0
-  d. 48 = 0x30
-  e. eax = 0x12ab56
-  f. eax = 0x1200ab
-  g. eax << 2 = 128 = 0x80
+  d. 32 + 16 = 48 = 0x30
+  e. 
+    eax = 00 12 34 56
+    eax = 00 12 ab 56
+  f. 
+    eax = 00 12 34 56
+    eax = 00 12 00 ab
+  g. 
+    eax = 32 = 0x20 = 0010 0000
+    eax << 2 = 1000 0000 = 128 = 0x80
 
-2. 
+2.
   a. mov eax, 42
-  b. add eax, 42
+  b. add eax, 62
   c. add eax, ebx
-  d.
+  d. 
     add eax, 99
     mov ebx, eax
+  e.
+     cmp eax, ebx
+     je foo
+  f. mov eax, dword[1099]
+  g. mov ecx, dword[foo] 
+  h. mov bx, word[0]
+  i. 
+    xor eax, eax
+    mov ax, word[bar]
+  j.
+    mov eax, dword[foo]
+    mov [bar], eax
+
+3.
+  a. 
+    ah = 260, but ah is 8 bits and can only hold 0-255
+    => ah = 260 % 256 = 4 = 0100
+    => eax = 0x00004000 # note that if we only change ah we have to express the whole register width in hex
+  
+  b.
+    eax = 0xaaaaaaaa
+    ah += 4 -> eax = 0x 1010 1010 1010 1010 1010 1110 1010 1010
+    eax << 4 = 1010 1010 1010 1010 1110 1010 1010 0000 = 0xaaaaeaa0
+  
+  c.
+    eax = 0x00aaaaaa
+    ax = 0xffff => eax = 0x00aaffff
+    al = 0x00 => eax = 0x00aaff00
+  
+  d.
+    eax = 0
+    ebx = 0x00cdabff
+    bl += 2 => ebx = 0x00cdab01
+    ax = bx => eax = 0x0000ab01
+    al -= 1 => eax = 0x0000ab00
 
   e.
-    cmp eax, ebx
-    je foo
-  f. mov eax, [1099]
-  g. mov ecx, [foo]
-  h. mov bx, [0]
-  i.
-    xor eax, eax
-    mov, ax, [bar]
-  
-    this is NOT correct:
-      mov bx, [bar]
-      mov eax, bx
-  j.
-    mov eax, [foo]
-    mov [bar], eax
-  
-3. 
-  a. 0x00000400
-  b. 0aaaaeaa0h
-  c. 0xaaff00
-  d. 0x0000ab00
-  e. 0x552a0000
+    eax = 0x00005555
+    al = 0x55 = 0101 0101, => al >> 1 = 0010 1010 = 0x2a => eax = 0x0000552a
+    eax << 16 = 0x552a0000
 
 4.
-  eax is 0x1b5 (437)
-  ebx is 1
+  eax = 3,
+  ebx = 4,
+  while ebx != 1:
+    eax = eax^2
+    eax -= 4
+    ebx -= 1
+  
+  ebx -> 4, 3, 2, 1
+  eax -> 5, 21, 437
+
+  there are only 3 iterations because loop will run on 4, 3, 2, and termintates on 1.
+
+  thus eax = 437 = 0x1b5
+  ebx = 0x1
